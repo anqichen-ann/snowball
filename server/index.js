@@ -9,7 +9,13 @@ let options = {
     }
 }
 
-app.get('/', (req,res) => {
+app.use((req,res,next) => {
+    res.append('Access-Control-Allow-Origin','*')
+    res.append('Access-Control-Allow-Content-Type','*')
+    next()
+})
+
+app.get('/app', (req,res) => {
     res.send('appserver')
 })
 
